@@ -48,11 +48,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /?gremlin=888-111
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /?gremlin=888-111
               port: http
           env:
             - name: INGRESS_HOST
