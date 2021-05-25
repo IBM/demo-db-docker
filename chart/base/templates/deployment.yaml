@@ -44,16 +44,18 @@ spec:
 
           ports:
             - name: http
-              containerPort: {{ .Values.image.port }}
+              containerPort: 8182
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /?gremlin=888-111
-              port: http
+              port: 8182
+              scheme: HTTP
           readinessProbe:
             httpGet:
               path: /?gremlin=888-111
-              port: http
+              port: 8182
+              scheme: HTTP
           env:
             - name: INGRESS_HOST
               value: ""
