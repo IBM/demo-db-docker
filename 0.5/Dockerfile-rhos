@@ -92,19 +92,17 @@ RUN groupadd -r janusgraph --gid=9999 && \
     dnf -y upgrade-minimal --security --sec-severity=Important --sec-severity=Critical && \
     rm -rf /var/lib/apt/lists/*
 
-# COPY --chown=:0 --from=builder /opt/janusgraph/ /opt/janusgraph/
-# COPY --chown=:0 --from=builder /opt/yq /usr/bin/yq
-# COPY --chown=:0 docker-entrypoint.sh /usr/local/bin/
-# COPY --chown=:0 load-initdb.sh /usr/local/bin/
 COPY --from=builder /opt/janusgraph/ /opt/janusgraph/
 COPY --from=builder /opt/yq /usr/bin/yq
 COPY docker-entrypoint.sh /usr/local/bin/
+COPY docker-entrypoint-rhos.sh /usr/local/bin/
 COPY load-initdb.sh /usr/local/bin/
 
 # copy licenses
 COPY --from=builder /opt/janusgraph/licenses/ /licenses
 
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh && \
+    chmod 755 /usr/local/bin/docker-entrypoint-rhos.sh && \
     chmod 755 /usr/local/bin/load-initdb.sh && \
     chmod 755 /usr/bin/yq && \
     mkdir -p ${JANUS_INITDB_DIR} ${JANUS_CONFIG_DIR} ${JANUS_DATA_DIR} && \
