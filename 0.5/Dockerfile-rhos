@@ -45,9 +45,9 @@ RUN curl -fSL https://github.com/markstur/demo-db/archive/${GIT_REVISION}.zip -o
     cp LICENSE.txt /opt/janusgraph/licenses/ && \
     cd janusgraph-dist/target/ && \
     ls && \
-    ls janusgraph-full-*.zip && \
-    unzip janusgraph-full-*.zip && \
-    mv janusgraph-full-*/* /opt/janusgraph/ && \
+    ls janusgraph-0.5*.zip && \
+    unzip janusgraph-0.5*.zip && \
+    mv janusgraph-0.5*/* /opt/janusgraph/ && \
     ls /opt/janusgraph && \
     rm -rf ${JANUS_HOME}/elasticsearch && \
     rm -rf ${JANUS_HOME}/javadocs && \
